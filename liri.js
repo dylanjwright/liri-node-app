@@ -88,8 +88,10 @@ var movieThis = function (query) {
 //------RANDOM--------//
 
 var doWhat = function() {
-    fs.readFile("random.txt", "utf8", function(data) {
-
+    fs.readFile("random.txt", "utf8", function(error, data) {
+        if (error) {
+            return console.log(error)
+        }
         var dataArr = data.split(",")
         command = dataArr[0];
         query = dataArr[1];
