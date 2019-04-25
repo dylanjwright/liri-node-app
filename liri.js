@@ -5,7 +5,7 @@ var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 var axios = require("axios");
 // var request = require("request");
-// var moment = require("moment");
+var moment = require("moment");
 
 var command = process.argv[2];
 var query = process.argv.slice(3).join(" ") || undefined
@@ -39,12 +39,20 @@ var spotThis = function(songName) {
 
 //------Bands in Town------//
 
-// var concThis = function(concArtist){
+var concThis = function(query){
+    if(query === undefined) {
+        query = "Tame Impala";
+    };
+    var bandUrl = "https://rest.bandsintown.com/artists/" + query + "/events?app_id=codingbootcamp";
 
-//     axios.get("https://rest.bandsintown.com/artists/" + concArtist + "/events?app_id=codingbootcamp").then(
-       
-//         if (err)
-// }
+    axios.get(bandUrl)
+    .then(function (response) {
+        console.log("\nVenue: " + response.data[0].venue.name)
+        console.log("Location: " + response.data[0].venue.city)
+        console.log("Date: " + (moment(response.data[0].datetime).format("MM/DD/YYYY"))+ "\n")
+    }
+
+    )}
 
 
 //------OMDB------//
@@ -53,6 +61,7 @@ var spotThis = function(songName) {
 var movieThis = function (query) { 
     if(query === undefined) {
         query = "the matrix";
+        console.log("\nIf you havent seen the matrix, then you should: https://www.imdb.com/title/tt0133093/")
     };
     var movieUrl = "http://www.omdbapi.com/?t=" + query + "&y=&plot=short&apikey=trilogy";
 
@@ -60,8 +69,8 @@ var movieThis = function (query) {
         .then(function (response) {
             console.log("\nTitle: " + response.data.Title);
             console.log("Year: " + response.data.Year);
-            var ratings = response.data.Ratings
-            ratings.filter(function(rating){
+            var ratings = response.data.Ratings;
+            ratings.forEach(function(rating){
                 if (rating.Source === 'Internet Movie Database' || rating.Source === 'Rotten Tomatoes'){
                     console.log(rating.Source + " rating: " + rating.Value)
                 }
