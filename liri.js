@@ -4,8 +4,8 @@ var keys = require("./keys.js");
 var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 var axios = require("axios");
-// var request = require("request");
 var moment = require("moment");
+var fs = require("fs");
 
 var command = process.argv[2];
 var query = process.argv.slice(3).join(" ") || undefined
@@ -85,6 +85,19 @@ var movieThis = function (query) {
         })
 };
 
+//------RANDOM--------//
+
+var doWhat = function() {
+    fs.readFile("random.txt", "utf8", function(data) {
+
+        var dataArr = data.split(",")
+        command = dataArr[0];
+        query = dataArr[1];
+        console.log(command);
+        console.log(query);
+        spotThis();
+    })
+}
 
 
 
