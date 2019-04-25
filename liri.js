@@ -97,7 +97,7 @@ var doWhat = function() {
         query = dataArr[1];
         console.log(command);
         console.log(query);
-        spotThis();
+        spotThis(query);
     })
 }
 
