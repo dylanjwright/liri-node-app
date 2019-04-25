@@ -13,5 +13,5 @@ To look up concert info on a specific artist use: node liri.js concert-this < en
 To look up movie info: 
 ![Alt text](images/moviethis.jpg?raw=true "Movie This")
 
-AND to tell it to do what you want with any search input, use: node liri.js do-what-it-says < enter input>
+AND to tell it to do what you want with any search input, use: node liri.js do-what-it-says
 ![Alt text](images/dowhat.jpg?raw=true "Do What")
