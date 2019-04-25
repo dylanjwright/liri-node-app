@@ -29,7 +29,7 @@ var spotThis = function(songName) {
 
         console.log("\nArtist(s): " + data.tracks.items[0].artists[i].name)
         console.log("Song: " + data.tracks.items[0].name); 
-        console.log("Preview " + data.tracks.items[0].preview_url); 
+        console.log("Preview: " + data.tracks.items[0].preview_url); 
         console.log("Album: " + data.tracks.items[0].album.name);
         console.log("\n"); 
 
